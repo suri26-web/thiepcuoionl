@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Cưới Điện Tử - Tuấn Ngọc & Thùy Linh</title>
+    <!-- Font chữ lãng mạn và hiện đại -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: #faf8f5; color: #4a433b; text-align: center; line-height: 1.6; }
+        
+        /* Tông màu vàng kem nhẹ nhàng */
+        .romantic-text { font-family: 'Alex Brush', cursive; color: #cca464; font-size: 3.5rem; }
+        section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+        
+        /* Banner Header */
+        header { 
+            background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.3)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px;
+        }
+        header h1 { font-size: 4.5rem; margin-bottom: 10px; font-family: 'Alex Brush', cursive; color: #b38f4d; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }
+        header p { font-size: 1.1rem; letter-spacing: 3px; text-transform: uppercase; font-weight: 400; color: #6e5d4f; }
+
+        /* Thông tin lễ cưới trắng vàng */
+        .info-box { background: #ffffff; border: 1px solid #f1ebd9; padding: 40px 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(204,164,100,0.08); margin-top: 20px; }
+        .names { font-size: 2.2rem; font-weight: 600; color: #b38f4d; margin: 20px 0; display: flex; justify-content: center; align-items: center; gap: 15px; font-family: 'Montserrat', sans-serif; }
+        .heart { color: #cca464; animation: beat .4s infinite alternate; }
+        @keyframes beat { to { transform: scale(1.15); } }
+
+        /* Đồng hồ đếm ngược vàng gold */
+        .countdown-container { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .countdown-item { background: #dfcb9e; color: #4a433b; padding: 15px; border-radius: 10px; min-width: 75px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+        .countdown-item span { display: block; font-size: 1.8rem; font-weight: 600; }
+        .countdown-item label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Album ảnh cưới */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 30px; }
+        .gallery-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; transition: transform 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 4px solid #fff; }
+        .gallery-grid img:hover { transform: scale(1.03); border-color: #dfcb9e; }
+
+        /* Lời chúc mừng */
+        form { background: white; padding: 30px; border-radius: 15px; border: 1px solid #f1ebd9; box-shadow: 0 4px 20px rgba(204,164,100,0.08); text-align: left; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #e2dac6; border-radius: 8px; font-family: inherit; background-color: #fdfcfb; }
+        input:focus, textarea:focus { outline: none; border-color: #cca464; }
+        button { background: #cca464; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; transition: background 0.3s; letter-spacing: 1px; }
+        button:hover { background: #b38f4d; }
+        .wishes-display { margin-top: 20px; max-height: 200px; overflow-y: auto; text-align: left; background: #faf8f5; padding: 15px; border-radius: 8px; border: 1px solid #f1ebd9; }
+        .wish-item { border-bottom: 1px solid #f1ebd9; padding: 10px 0; font-size: 0.95rem; }
+        .wish-item:last-child { border: none; }
+
+        /* Mã QR mừng cưới màu nhã nhặn */
+        .qr-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 30px; }
+        .qr-card { background: white; padding: 20px; border-radius: 12px; border: 1px solid #f1ebd9; box-shadow: 0 4px 15px rgba(0,0,0,0.02); width: 220px; }
+        .qr-card img { width: 100%; border-radius: 8px; border: 1px solid #fdfcfb; }
+        .qr-card p { margin-top: 12px; font-weight: 600; color: #b38f4d; font-size: 0.95rem; }
+
+        /* Nút điều khiển nhạc cố định nổi góc màn hình */
+        .music-control {
+            position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px; 
+            background: #cca464; color: white; border-radius: 50%; display: flex; 
+            justify-content: center; align-items: center; cursor: pointer; z-index: 9999;
+            box-shadow: 0 4px 12px rgba(204,164,100,0.4); border: 2px solid white;
+        }
+        .music-control.playing { animation: spin 4s linear infinite; background: #b38f4d; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        footer { padding: 40px 20px; background: #f4eee1; color: #73675c; font-size: 0.9rem; margin-top: 60px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <!-- Nút điều khiển nhạc nền -->
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()">
+        <svg id="musicIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+    </div>
+    
+    <!-- Audio Nhạc nền (Thay link src bằng nhạc của bạn nếu muốn) -->
+    <audio id="weddingAudio" loop>
+        <source src="https://soundhelix.com" type="audio/mpeg">
+    </audio>
+
+    <!-- Banner chính -->
+    <header>
+        <p>Save The Date</p>
+        <h1>Tuấn Ngọc & Thùy Linh</h1>
+        <p>24 . 10 . 2026</p>
+    </header>
+
+    <!-- Thông tin hôn lễ -->
+    <section id="thong-tin">
+        <h2 class="romantic-text">Trân trọng kính mời</h2>
+        <div class="info-box">
+            <p>Đến dự buổi tiệc thành hôn chung vui cùng hai gia đình chúng tôi tại</p>
+            <div class="names">
+                <span>Tuấn Ngọc</span>
+                <span class="heart">⚜</span>
+                <span>Thùy Linh</span>
+            </div>
+            <p style="font-size: 1.1rem; font-weight: 600; color: #b38f4d; margin-bottom: 8px; letter-spacing: 1px;">ĐỊA ĐIỂM TỔ CHỨC</p>
+            <p style="font-weight: 500; font-size: 1.1rem; margin-bottom: 20px;">Thôn Gia Lương, Xã Đông Hội, Huyện Đông Anh, Hà Nội</p>
+            <p style="font-size: 1.1rem; font-weight: 600; color: #b38f4d; margin-bottom: 8px; letter-spacing: 1px;">THỜI GIAN</p>
+            <p style="font-weight: 500; font-size: 1.1rem;">Vào hồi 16 giờ 30 phút</p>
+            <p style="color: #6e5d4f;">Thứ Bảy, ngày 24 tháng 10 năm 2026</p>
+            
+            <!-- Đồng hồ đếm ngược -->
+            <div class="countdown-container">
+                <div class="countdown-item"><span id="days">00</span><label>Ngày</label></div>
+                <div class="countdown-item"><span id="hours">00</span><label>Giờ</label></div>
+                <div class="countdown-item"><span id="minutes">00</span><label>Phút</label></div>
+                <div class="countdown-item"><span id="seconds">00</span><label>Giây</label></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Album ảnh cưới -->
+    <section id="album" style="background: #ffffff; width: 100%; max-width: 100%; border-top: 1px solid #f1ebd9; border-bottom: 1px solid #f1ebd9;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="romantic-text">Album Ảnh Cưới</h2>
+            <p style="color: #8c7e6e; margin-bottom: 10px;">Khoảnh khắc hạnh phúc đong đầy</p>
+            <div class="gallery-grid">
+                <img src="https://unsplash.com" alt="Ảnh cưới 1">
+                <img src="https://unsplash.com" alt="Ảnh cưới 2">
+                <img src="https://unsplash.com" alt="Ảnh cưới 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Hộp quà và mã QR mừng cưới -->
+    <section id="mung-cuoi">
+        <h2 class="romantic-text">Hộp Mừng Cưới</h2>
+        <p style="color: #8c7e6e; margin-bottom: 20px;">Sự hiện diện của bạn là món quà lớn nhất. Nếu muốn gửi lời chúc và qu
+à từ xa:</p>
+        <div class="qr-container">
+            <div class="qr-card">
+                <img src="https://vietqr.io" alt="QR Chú Rể">
+                <p>Chú rể: Tuấn Ngọc</p>
+            </div>
+            <div class="qr-card">
+                <img src="https://vietqr.io" alt="QR Cô Dâu">
+                <p>Cô dâu: Thùy Linh</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gửi lời chúc -->
+    <section id="loi-chuc" style="background: #faf8f5;">
+        <h2 class="romantic-text">Gửi Lời Chúc</h2>
+        <form id="wishForm">
+            <input type="text" id="guestName" placeholder="Tên của bạn" required>
+            <textarea id="guestMessage" rows="4" placeholder="Nhập lời chúc của bạn tại đây..." required></textarea>
+            <button type="submit">Gửi Lời Chúc Hạnh Phúc</button>
+        </form>
+        <div class="wishes-display" id="wishesDisplay">
+            <div class="wish-item"><strong>Gia đình bạn thân:</strong> Chúc hai em Tuấn Ngọc và Thùy Linh trăm năm tình viên mãn, bạc đầu nghĩa phu thê! ✨</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Cảm ơn bạn đã ghé thăm website đám cưới của Tuấn Ngọc & Thùy Linh!</p>
+    </footer>
+
+    <script>
